@@ -2,7 +2,7 @@
 
 const router = require("express").Router();
 
-const {AddEvent,GetAllEvents,UpdateEvent, DeleteEvent,GetEventById} = require('../Controllers/Event');
+const {AddEvent,GetAllEvents,UpdateEvent, DeleteEvent,GetEventById} = require('../Controllers/event');
 
 
 router.get("/", GetAllEvents);
