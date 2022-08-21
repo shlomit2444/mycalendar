@@ -1,4 +1,4 @@
-const event=require('API/V1/models/event');
+const event=require('../models/event');
 const mongoose=require('mongoose');
 
 module.exports={

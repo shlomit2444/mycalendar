@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const User=require('API/V1/models/user');
+const User=require('../models/user');
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const { JsonWebTokenError } = require('jsonwebtoken');
