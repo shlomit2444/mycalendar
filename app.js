@@ -19,39 +19,32 @@ const UserRouter =  require('./API/V1/routes/user')
 
 require("dotenv").config();
 
-
+//התחברות למסד נתונים
 const uri = process.env.MONGO_CONN;
 mongoose.connect(uri, {useNewUrlParser:true}).then(()=>{console.log("mongo db conntected")});
 
-/*
-app.all('*', (req, res)=>{
-    //החזרת תשובה עם סטסאוס 200 , הכל תקין
-    //ומחזירים ג'ייסון עם הודעה מתאימה
-return res.status(200).json({Msg:"Got Your Request"});
 
-
-});
-*/
 
 //זוהי פונקציה המטפלת בכל שיטות הבקשה
 //GET POST PUT DELETE PATCH
 //הפונקציה מקבלת את הנתיב ואת הקוד לביצוע
 //app.get("/user",)
-app.get("/event");
-app.get("/event/:eid");
-app.post("/event");
-app.put("/event/:eid");
-app.delete("/event/:eid");
-app.post("/user");
+app.get("/event");//הצכת כל האירועים
+app.get("/event/:eid");//הצגת אירוע ספציפי
+app.post("/event");//הוספת אירוע
+app.put("/event/:eid");//עדכון אירוע
+app.delete("/event/:eid");//מחיקת אירוע
+//app.post("/user");
 
-/*
-app.get("/user/");
-app.get("/user/:uid");
-app.post("/user");
-app.put("/user/:uid");
-app.delete("/user/:uid");
-*/
-//app.post("user/Login");
+
+//app.get("/user/");
+
+app.post("/user/reg");//רישום משתמש חדש
+app.put("/user/:uid");//עדכון משתמש
+app.delete("/user/:uid");//מחיקת משתמש
+
+app.post("user/login");//התחברות עם שם משתמש וסיסמא
+app.post("user/reg");//הרשמה של משתמש חדש
 //ניתובים
 //נתונים
 //קונטרולרים
@@ -59,8 +52,9 @@ app.delete("/user/:uid");
 //הגדרת ניתוב
 
 app.use("/event", EventRouter);
-app.use("/user", Auths, UserRouter);
-//app.use("/user", UserRouter);
+app.use("/user/login", Auths, UserRouter);
+app.use("/user/reg", UserRouter);
+app.use("/user", UserRouter);
 
 //הגדרת נקודת קצה סופית עבור שגיאת 404 כתובת לא נמצאה
 

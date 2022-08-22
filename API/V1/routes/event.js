@@ -4,7 +4,7 @@ const router = require("express").Router();
 
 const {AddEvent,GetAllEvents,UpdateEvent, DeleteEvent,GetEventById} = require('../Controllers/event');
 
-
+//ניתובים עבור שליפה מהדאטהבייס
 router.get("/", GetAllEvents);
 router.get("/:Eid", GetEventById);
 router.delete("/:Eid", DeleteEvent);

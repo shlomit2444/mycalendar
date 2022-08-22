@@ -1,10 +1,11 @@
+//נגדיר אובייקט התחברות של סכימה בבסיס נתונים
 const mongoose=require('mongoose');
 mongoose.pluralize(null);
 const UserSchema = mongoose.Schema({
   _id:mongoose.Schema.Types.ObjectId,
   Username:String,
   Pass:String,
-  Uid:String, 
+  Uid:Number, 
   Adress:String, 
   email:String,
   Bdate:String,
