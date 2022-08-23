@@ -59,8 +59,8 @@ app.delete("/user/:uid");//מחיקת משתמש
 app.use("/user/reg", UserRouter);
 app.use("/user",  UserRouter);
 app.use("/event", EventRouter);
-//app.use("/user/login", Auths, UserRouter);
-app.use("/user/login", UserRouter);
+app.use("/user/login", Auths, UserRouter);
+//app.use("/user/login", UserRouter);
 
 
 
