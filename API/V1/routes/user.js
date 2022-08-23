@@ -11,9 +11,9 @@ const {Login,Reg,GetUserById,DeleteUser,ChangeDetailUser,GetAllUsers} = require(
 //ניתובים עבור שליפה מהדאטהבייס
 router.post("/login", Login);
 router.post("/reg", Reg);
-router.get("/uid", GetUserById);
-router.delete("/uid", DeleteUser);
-router.put("/uid", ChangeDetailUser);
+router.get("/:uid", GetUserById);
+router.delete("/:uid", DeleteUser);
+router.put("/:uid", ChangeDetailUser);
 router.get("/", GetAllUsers); 
 
 
