@@ -1,5 +1,4 @@
 //נתקין אפליקציית אקספרס, נתקין את הספריות הבאות
-//npm i nodemon morgan express bcrypt jsonwebtoken dotenv mongoose cors mongodb mysql
 const express = require("express");
 const app = express();
 //הפונקציה מקבלת בקשה ותשובה - שני אובייקטים
@@ -41,12 +40,10 @@ app.get("/event/:eid");//הצגת אירוע ספציפי
 app.post("/event");//הוספת אירוע
 app.put("/event/:eid");//עדכון אירוע
 app.delete("/event/:eid");//מחיקת אירוע
-//app.post("/user");
-//טוען פרטי משתמש לפי שם משתמש
 
-//app.get("/user/");
+
+
 app.post("user/login");//התחברות עם שם משתמש וסיסמא
-
 app.post("/user/reg");//רישום משתמש חדש
 app.put("/user/:uid");//עדכון משתמש
 app.delete("/user/:uid");//מחיקת משתמש

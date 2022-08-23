@@ -21,7 +21,7 @@ module.exports={
         // עדכון אירוע
      
         //שמירת האובייקט
-        event.updateOne({Eid:req.params.eid}).then(()=>{
+        event.updateOne({Eid:req.params.eid}, req.body).then(()=>{
         
           return res.status(200).json({Msg:"Event Update",
           Eid:req.params.eid

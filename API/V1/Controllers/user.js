@@ -79,7 +79,7 @@ module.exports={
 
         
         //שמירת האובייקט
-        User.updateOne({Uid:req.params.uid}).then((eve)=>{
+        User.updateOne({Uid:req.params.uid}, req.body).then((eve)=>{
         
             return res.status(200).json({Msg:"User Update",
             Uid:req.params.uid
