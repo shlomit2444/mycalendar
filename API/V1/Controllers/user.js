@@ -18,7 +18,7 @@ module.exports={
                 if(!status)//במידה והסיסמא אינה תואמת נחזיר שגיאה
                    return res.status(409).json({Msg:"Username Or Password are Wrong"});
                   //console.log("ok");
-                 //const token=jwt.sign({Username},process.env.SECRET_KEY,{expiresIn:'1H'});
+                 const token=jwt.sign({Username},process.env.SECRET_KEY,{expiresIn:'1H'});
                  return res.status(200).json({Msg:"Username Logined Successfully",token});
  
                 });
