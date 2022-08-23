@@ -2,10 +2,9 @@
 
 const router = require("express").Router();
 const {Login,Reg,GetUserById,DeleteUser,ChangeDetailUser,GetAllUsers} = require("../Controllers/user");
-//const {Login,Reg} = require("../countroller/userSQL");
+
 // נגדיר נקודת קצה עבור הרשמה והתחברות
 
-//const {AddUser,GetAllUsers,UpdateUser, DeleteUser,GetUserById} = require('../countroller/user');
 
 
 //ניתובים עבור שליפה מהדאטהבייס
