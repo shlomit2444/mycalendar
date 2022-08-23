@@ -19,21 +19,14 @@ module.exports={
     },
     UpdateEvent:(req,res)=>{
         // עדכון אירוע
-        const{Eid,Ename,Picname,Desc,Edate, Uid}=req.body;
-        const Eve=new event({
-            _id:new mongoose.Types.ObjectId(),
-            Eid:Eid,
-            Ename:Ename,
-            Desc:Desc,
-            Picname:Picname,
-            Edate:Edate,
-            Uid:Uid
-        });
+     
         //שמירת האובייקט
-        Eve.updateOne({Eid:req.params.eid}).then(()=>{
+        event.updateOne({Eid:req.params.eid}).then(()=>{
         
-          return  res.status(200).json({msg:'Event Updated by Id '+Eid });
-        });
+          return res.status(200).json({Msg:"Event Update",
+          Eid:req.params.eid
+          });
+         });
        
      },
     DeleteEvent:(req,res)=>{

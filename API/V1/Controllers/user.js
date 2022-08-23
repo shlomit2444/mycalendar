@@ -75,20 +75,14 @@ module.exports={
     },
     ChangeDetailUser:(req,res)=>{
 
-        const {Username,Pass,email, Phone,Bdate, Adress}=req.body;
-        const Eve=new User({
-            _id:new mongoose.Types.ObjectId(),
-                Username:Username,
-                Pass:Pass,
-                email:email,
-                Phone:Phone,    
-                Bdate:Bdate, 
-                Adress:Adress
-        });
-        //שמירת האובייקט
-        Eve.updateOne({Uid:req.params.uid}).then(()=>{
         
-          return  res.status(200).json({msg:'Event Updated by Id '+Uid });
+        //שמירת האובייקט
+        User.updateOne({Uid:req.params.uid}).then((eve)=>{
+        
+            return res.status(200).json({Msg:"User Update",
+            Uid:req.params.uid
+            });
+
         });
      
         
