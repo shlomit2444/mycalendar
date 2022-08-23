@@ -35,6 +35,7 @@ mongoose.connect(uri, {useNewUrlParser:true}).then(()=>{console.log("mongo db co
 //GET POST PUT DELETE PATCH
 //הפונקציה מקבלת את הנתיב ואת הקוד לביצוע
 //app.get("/user",)
+app.get("/user/:uid");
 app.get("/event");//הצכת כל האירועים
 app.get("/event/:eid");//הצגת אירוע ספציפי
 app.post("/event");//הוספת אירוע
@@ -42,7 +43,7 @@ app.put("/event/:eid");//עדכון אירוע
 app.delete("/event/:eid");//מחיקת אירוע
 //app.post("/user");
 //טוען פרטי משתמש לפי שם משתמש
-app.get("/user/:uid");
+
 //app.get("/user/");
 app.post("user/login");//התחברות עם שם משתמש וסיסמא
 
@@ -59,16 +60,16 @@ app.delete("/user/:uid");//מחיקת משתמש
 app.use("/user/reg", UserRouter);
 app.use("/user",  UserRouter);
 app.use("/event", EventRouter);
-app.use("/user/login", Auths, UserRouter);
+//app.use("/user/login", Auths, UserRouter);
 //app.use("/user/login", UserRouter);
 
 
 
 //הגדרת נקודת קצה סופית עבור שגיאת 404 כתובת לא נמצאה
 
-//app.all("*", (req,res)=>{
-//res.status(404).json({Msg:"page not found"});
+app.all("*", (req,res)=>{
+res.status(404).json({Msg:"page not found"});
 
-//});
+});
 
 module.exports= app; //ייצוא האפליקציה של אקספרס
