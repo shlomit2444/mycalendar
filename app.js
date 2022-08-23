@@ -6,18 +6,24 @@ const app = express();
 //REQ- מייצג את הבקשה, הפנייה לשרת
 //RES - מייצד את התשובה, תשובת השרת לבקשה
 const cors = require("cors");//האם אני מאפשר גישה לקוד שלי מכתובות מסויימות
-const Auths = require("./API/V1/middleware/Auths");
+const mongoose = require("mongoose");
+//כל בקשה שמגיעה נרשמת
 const morgan = require("morgan");
+//משתנה סביבה
+require("dotenv").config();
+const Auths = require("./API/V1/middleware/Auths");
+//אומר מי יכול  לגשת ברמת אבטחה בסיסית, כאן זה פתוח להכל
 app.use(cors());
 app.use(morgan("dev")); 
+//הבקשה ב BODY תהיה בצורת גייסון
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
-const mongoose = require("mongoose");
+
 const EventRouter = require("./API/V1/routes/event");
 const UserRouter =  require('./API/V1/routes/user')
 
-require("dotenv").config();
+
 
 //התחברות למסד נתונים
 const uri = process.env.MONGO_CONN;
@@ -38,23 +44,23 @@ app.delete("/event/:eid");//מחיקת אירוע
 
 
 //app.get("/user/");
+app.post("user/login");//התחברות עם שם משתמש וסיסמא
 
 app.post("/user/reg");//רישום משתמש חדש
 app.put("/user/:uid");//עדכון משתמש
 app.delete("/user/:uid");//מחיקת משתמש
 
-app.post("user/login");//התחברות עם שם משתמש וסיסמא
-app.post("user/reg");//הרשמה של משתמש חדש
+
 //ניתובים
 //נתונים
 //קונטרולרים
 
 //הגדרת ניתוב
-
-app.use("/event", EventRouter);
-app.use("/user/login", Auths, UserRouter);
 app.use("/user/reg", UserRouter);
-app.use("/user", UserRouter);
+app.use("/event", EventRouter);
+//app.use("/user/login", UserRouter);
+app.use("/user/login", Auths, UserRouter);
+app.use("/user",  UserRouter);
 
 //הגדרת נקודת קצה סופית עבור שגיאת 404 כתובת לא נמצאה
 

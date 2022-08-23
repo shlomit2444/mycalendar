@@ -30,15 +30,13 @@ module.exports={
     Reg:(req,res)=>{
 
         const {Username,Pass,email, Phone,Bdate, Adress}=req.body;
-       /*
-        User.find({Username}).then((row)=>{
-if (rows.length>0)
-return res.status(409).json({Msg:"User Already Exist"});
+      //בודקים אם שם המשתמש כבר קיים
+        User.find({Username:Username}).then((rows)=>{
+        if (rows.length>0)
+            return res.status(409).json({Msg:"User Already Exist"});
 
-  */     
-    
-        bcrypt.hash(Pass,3,(err,hashPass)=>{
-            if(err)
+        bcrypt.hash(Pass,12,(err,hashPass)=>{
+          if(err)
            return res.status(500).json({ServeError:err});
             const user=new User({
                 _id:new mongoose.Types.ObjectId(),
@@ -57,7 +55,7 @@ return res.status(409).json({Msg:"User Already Exist"});
 
         });
 
-
+    });
 
 
    // }) ;  
