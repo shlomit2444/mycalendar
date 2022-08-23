@@ -9,6 +9,7 @@ console.log(authHeader);
 try{
     const token=authHeader.split(' ')[1];
     console.log(token);
+    //פירנוח הטוקן 
     jwt.verify(token,process.env.SECRET_KEY);
     next();
 }

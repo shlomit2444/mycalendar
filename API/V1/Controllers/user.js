@@ -7,7 +7,7 @@ const { JsonWebTokenError } = require('jsonwebtoken');
 
 
 module.exports={
-    Login:(req,res)=>{//
+    Login:(req,res)=>{//התחברות
    
        const {Username,Pass}=req.body;
         User.find({Username:Username}).then((rows)=>{
@@ -17,7 +17,7 @@ module.exports={
              bcrypt.compare(Pass,rows[0].Pass).then((status)=>{
                 if(!status)//במידה והסיסמא אינה תואמת נחזיר שגיאה
                    return res.status(409).json({Msg:"Username Or Password are Wrong"});
-                  //console.log("ok");
+                
                  const token=jwt.sign({Username},process.env.SECRET_KEY,{expiresIn:'1H'});
                  return res.status(200).json({Msg:"Username Logined Successfully",token});
  
@@ -28,7 +28,7 @@ module.exports={
     },
     
     Reg:(req,res)=>{
-
+//הרשמה
         const {Username,Pass,email, Phone,Bdate, Adress}=req.body;
       //בודקים אם שם המשתמש כבר קיים
         User.find({Username:Username}).then((rows)=>{
@@ -58,7 +58,7 @@ module.exports={
     });
 
     },
-
+//מחיקת יוזר
     DeleteUser:(req,res)=>{
         User.deleteOne({Uid:req.params.uid}).then((eve)=>{
             return res.status(200).json({Msg:"User Deleted",
@@ -67,12 +67,14 @@ module.exports={
 
         });
     },
+//הצגת משתמש לפי איי די
     GetUserById:(req,res)=>{
         User.findOne({Uid:req.params.uid}).then((eve)=>{
            
             return  res.status(200).json(eve);
           });
     },
+//עדכון משתמש לפי איי די
     ChangeDetailUser:(req,res)=>{
 
         
@@ -87,7 +89,7 @@ module.exports={
      
         
     },
-
+//הצגת כל המשתמשים
     GetAllUsers:(req,res)=>{
 
         User.find().then((eve)=>{

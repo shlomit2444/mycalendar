@@ -11,7 +11,6 @@ const UserSchema = mongoose.Schema({
   Bdate:String,
   Phone:String
   
-//Bdate:{type:Date, default:Date.now},
   
 });
 //ייצוא מודל עם שם האוסף בבסיס הנתונים והסכימה של המסמכים הכלולים בו

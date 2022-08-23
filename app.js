@@ -52,16 +52,11 @@ app.put("/user/:uid");//עדכון משתמש
 app.delete("/user/:uid");//מחיקת משתמש
 
 
-//ניתובים
-//נתונים
-//קונטרולרים
-
 //הגדרת ניתוב
 app.use("/user/reg", UserRouter);
 app.use("/user",  UserRouter);
 app.use("/event", EventRouter);
 app.use("/user/login", Auths, UserRouter);
-//app.use("/user/login", UserRouter);
 
 
 
