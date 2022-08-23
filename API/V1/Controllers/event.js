@@ -60,7 +60,7 @@ module.exports={
         //שמירת האובייקט
         Eve.save().then(()=>{
 
-          return  res.status(200).json({msg:'Event Details by Id '+Eid });
+          return  res.status(200).json({msg:'Event Added by Id '+Eid });
         })
        
      }
