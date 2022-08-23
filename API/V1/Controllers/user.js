@@ -18,7 +18,7 @@ module.exports={
                 if(!status)//במידה והסיסמא אינה תואמת נחזיר שגיאה
                    return res.status(409).json({Msg:"Username Or Password are Wrong"});
                   //console.log("ok");
-                 const token=jwt.sign({Username},process.env.SECRET_KEY,{expiresIn:'1H'});
+                 //const token=jwt.sign({Username},process.env.SECRET_KEY,{expiresIn:'1H'});
                  return res.status(200).json({Msg:"Username Logined Successfully",token});
  
                 });
@@ -62,20 +62,37 @@ module.exports={
     },
 
     DeleteUser:(req,res)=>{
-        User.deleteOne({Uid:req.params.Uid}).then((eve)=>{
+        User.deleteOne({Uid:req.params.uid}).then((eve)=>{
             return res.status(200).json({Msg:"User Deleted",
-            Uid:req.params.Uid
+            Uid:req.params.uid
             });
 
         });
     },
-
+    GetUserById:(req,res)=>{
+        User.findOne({Uid:req.params.uid}).then((eve)=>{
+           
+            return  res.status(200).json(eve);
+          });
+    },
     ChangeDetailUser:(req,res)=>{
 
-        User.updateOne({Uid:req.params.Uid},req.body).then((eve)=>{
-            return res.status(200).json(eve);
-           
+        const {Username,Pass,email, Phone,Bdate, Adress}=req.body;
+        const Eve=new User({
+            _id:new mongoose.Types.ObjectId(),
+                Username:Username,
+                Pass:Pass,
+                email:email,
+                Phone:Phone,    
+                Bdate:Bdate, 
+                Adress:Adress
         });
+        //שמירת האובייקט
+        Eve.updateOne({Uid:req.params.uid}).then(()=>{
+        
+          return  res.status(200).json({msg:'Event Updated by Id '+Uid });
+        });
+     
         
     },
 

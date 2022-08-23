@@ -12,16 +12,27 @@ module.exports={
     GetEventById:(req,res)=>{
         // הצגת אירוע לפי קוד אירוע
         event.findOne({Eid:req.params.eid}).then((eve)=>{
-           
-          return  res.status(200).json(eve);
+        
+          return res.status(200).json(eve);
         });
        
     },
     UpdateEvent:(req,res)=>{
         // עדכון אירוע
-        event.updateOne({Eid:req.params.eid},req.body).then((eve)=>{
-            return res.status(200).json(eve);
-           
+        const{Eid,Ename,Picname,Desc,Edate, Uid}=req.body;
+        const Eve=new event({
+            _id:new mongoose.Types.ObjectId(),
+            Eid:Eid,
+            Ename:Ename,
+            Desc:Desc,
+            Picname:Picname,
+            Edate:Edate,
+            Uid:Uid
+        });
+        //שמירת האובייקט
+        Eve.updateOne({Eid:req.params.eid}).then(()=>{
+        
+          return  res.status(200).json({msg:'Event Updated by Id '+Eid });
         });
        
      },
